@@ -218,7 +218,7 @@ input,select,textarea{box-sizing:border-box}
 .cld.sel{outline:2px solid var(--acc);outline-offset:-2px;border-radius:6px}
 .bd{display:block;font-size:10.5px;line-height:1.55;padding:0 5px;border-radius:3px;white-space:nowrap;max-width:100%}
 .bd.dn{background:color-mix(in srgb,#388e75 20%,var(--card));color:#388e75;font-weight:600}
-.bd.up{background:color-mix(in srgb,var(--f) 18%,var(--card));color:var(--f);font-weight:600}
+.bd.up{background:color-mix(in srgb,#f 18%,var(--card));color:var(--f);font-weight:600}
 .bd.ze{background:var(--line);color:var(--mut)}
 .bd.w{background:var(--line);color:var(--ink)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .calh{color:#fff}}
@@ -527,7 +527,6 @@ function renderDay(){
   const l=dayFood(day);
   $('#list').innerHTML=l.length?l.map(x=>`<li class="fi"><div><b>${MEALS[x.m||'s']}</b> · ${esc(x.name)}<small>${fmt(x.k)} kcal | P:${fmt(x.p)}g C:${fmt(x.c)}g F:${fmt(x.fa)}g</small></div><button class="x" data-f="${x.id}">×</button></li>`).join(''):'<li class="hint">今日尚未新增飲食。</li>';
   
-  // 渲染日曆
   renderCal();
   renderWeek();
   $('#dtx').value=diaryText(I);
@@ -559,7 +558,6 @@ function initApp(){
   renderIB();
   renderDay();
 
-  // 事件綁定
   $('#day').onchange=e=>{day=e.target.value;cal=day.slice(0,7);renderDay()};
   $('#dt').onchange=e=>{S.dt[day]=e.target.value;save();renderDay()};
   $('#avg').onchange=renderWeight;
@@ -602,7 +600,6 @@ function initApp(){
     if(btn&&btn.dataset.d){day=btn.dataset.d;renderDay()}
   };
   
-  // 批量匯入
   $('#bimp').onclick=()=>{
     const ty=$('#bty').value,txt=$('#btx').value.trim();
     if(!txt)return;
@@ -631,7 +628,6 @@ function initApp(){
     $('#btx').value='';
   };
   
-  // 還原備份
   $('#bkr').onclick=()=>{
     try{
       const parsed=JSON.parse($('#bk').value);
